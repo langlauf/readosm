@@ -8,7 +8,7 @@ LIBOBJ	               =	src\readosm.obj src\osmxml.obj \
 							src\protobuf.obj src\osm_objects.obj
 READOSM_DLL	 	       =	readosm$(VERSION).dll
 
-CFLAGS	=	/nologo -IC:\OSGeo4W\include -Iheaders $(OPTFLAGS)
+CFLAGS	=	/nologo -I. -Iheaders -IC:\OSGeo4W\include $(OPTFLAGS)
 
 default:	all
 
@@ -21,7 +21,7 @@ readosm.lib:	$(LIBOBJ)
 $(READOSM_DLL):	readosm_i.lib
 
 readosm_i.lib:	$(LIBOBJ)
-	link /debug /dll /out:$(READOSM_DLL) \
+	link /dll /out:$(READOSM_DLL) \
 		/implib:readosm_i.lib $(LIBOBJ) \
 		C:\OSGeo4w\lib\libexpat.lib C:\OSGeo4w\lib\zlib.lib
 	if exist $(READOSM_DLL).manifest mt -manifest \
